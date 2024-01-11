@@ -1,1 +1,1 @@
-# Vway_demo
+SCM 사용법
