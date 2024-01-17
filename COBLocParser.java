@@ -8,7 +8,7 @@ import com.cubegen.common.FileUtils;
 
 /**
  * ClassName : COBLocParser
- * @Description : Line Of Count ÄÚº¼ ÆÄ¼­
+ * @Description : Line Of Count ì½”ë³¼ íŒŒì„œ
  */
 public class COBLocParser extends BaseParser {
 	
@@ -17,7 +17,7 @@ public class COBLocParser extends BaseParser {
 	public COBLocParser(String lang) {
 		
 		langID = lang;
-// --- (1) COBOL ¸í·É¾î ¸®½ºÆ® ÀÛ¼º -----
+// --- (1) COBOL ëª…ë ¹ì–´ ë¦¬ìŠ¤íŠ¸ ì‘ì„± -----
 		
 		cobComd.add("ADD");
 		cobComd.add("CPMPUTE");
@@ -85,34 +85,34 @@ public class COBLocParser extends BaseParser {
 	/**
 	 * MethodName : LOCParser
 	 * 
-	 * @Description : ¼Ò½º¸¦ ºñ±³ÇÒ ¼ö ÀÖµµ·Ï º¯È¯.
+	 * @Description : ì†ŒìŠ¤ë¥¼ ë¹„êµí•  ìˆ˜ ìˆë„ë¡ ë³€í™˜.
 	 * @param :
-	 *            StringBuffer source(º¯È¯ÇÒ ¼Ò½º)
-	 * @return : StringBuffer source(¤Ñº¯È¯µÈ ¼Ò½º)
+	 *            StringBuffer source(ë³€í™˜í•  ì†ŒìŠ¤)
+	 * @return : StringBuffer source(ã…¡ë³€í™˜ëœ ì†ŒìŠ¤)
 	 */
 	public StringBuffer LOCParser(StringBuffer source) {
 
-		// --- (2) COBOL ¼Ò½º READ(INPUT) ¼±¾ğÃ³¸®
+		// --- (2) COBOL ì†ŒìŠ¤ READ(INPUT) ì„ ì–¸ì²˜ë¦¬
 		StringBuffer tmpsb = new StringBuffer();
 		String line = "";
-		String line0772 	= ""; 	// COBOL À¯È¿ÄÃ·³ µ¥ÀÌÅÍ 
-		String linetrim 	= ""; 	// ¼Ò½º¶óÀÎ ´õºí °ø¹é(SPACE) Á¦°Å ¿ë
-		String token 			= ""; 	// ÅäÅ« µ¥ÀÌÅÍ ÀÛ¾÷¿ë
+		String line0772 	= ""; 	// COBOL ìœ íš¨ì»¬ëŸ¼ ë°ì´í„° 
+		String linetrim 	= ""; 	// ì†ŒìŠ¤ë¼ì¸ ë”ë¸” ê³µë°±(SPACE) ì œê±° ìš©
+		String token 			= ""; 	// í† í° ë°ì´í„° ì‘ì—…ìš©
 		int iTmpIdx = 0;
 		boolean bEndDot= false;
 		
 		Scanner scanner = new Scanner(source.toString()).useDelimiter("\n");
-		// --- (3) ¶óÀÎ´ÜÀ§ ¼Ò½º ÆÄ½Ì Ã³¸®		
+		// --- (3) ë¼ì¸ë‹¨ìœ„ ì†ŒìŠ¤ íŒŒì‹± ì²˜ë¦¬		
 		while (scanner.hasNext()) {
-			// --- (3.1) ¶óÀÎ ´ÜÀ§ ¼Ò½ºÀÔ·Â Ã³¸®
+			// --- (3.1) ë¼ì¸ ë‹¨ìœ„ ì†ŒìŠ¤ì…ë ¥ ì²˜ë¦¬
 			line = scanner.next();
 			
-			//ÄÚµå Áß°£ ÁÖ¼® Ã³¸®
+			//ì½”ë“œ ì¤‘ê°„ ì£¼ì„ ì²˜ë¦¬
 			if("TANDEM-COBOL".equals(langID)){
 				iTmpIdx =line.indexOf("!");
 				if (iTmpIdx >0) line = line.substring(0, iTmpIdx);
 				
-				if((line.trim().length()==0) || (line.charAt(0) == '!')) { //ÅÙ´ı ÄÚº¼ ÇÑÁÙ ÁÖ¼®
+				if((line.trim().length()==0) || (line.charAt(0) == '!')) { //í…ë¤ ì½”ë³¼ í•œì¤„ ì£¼ì„
 					continue;
 				}
 				
@@ -122,7 +122,7 @@ public class COBLocParser extends BaseParser {
 				iTmpIdx =line.indexOf("*>");
 				if (iTmpIdx >0) line = line.substring(0, iTmpIdx);
 				
-				//72ÄÃ·³ ÀÌÈÄÀÇ 8ÀÚ¸® ¼ıÀÚ Ã³¸® Sosi¹®Á¦·Î 72¾ÈÂÊÀ¸·Î µé¾î¿À´Â °æ¿ì ÀÖÀ½
+				//72ì»¬ëŸ¼ ì´í›„ì˜ 8ìë¦¬ ìˆ«ì ì²˜ë¦¬ Sosië¬¸ì œë¡œ 72ì•ˆìª½ìœ¼ë¡œ ë“¤ì–´ì˜¤ëŠ” ê²½ìš° ìˆìŒ
 				if ((line.length()>8) && isNumber(line.substring(line.length()-8))){
 					char[] arrChar = line.substring(0, line.length()-8).toCharArray();
 					
@@ -131,7 +131,7 @@ public class COBLocParser extends BaseParser {
 							 (arrChar[i]==')')||(arrChar[i]==']')|| 
 							 (arrChar[i]=='.')||(arrChar[i]==';')||
 							 (arrChar[i]=='"')||(arrChar[i]=='\'')||
-							 Character.isLetterOrDigit(arrChar[i])  //¿µ¹®ÀÚ,¼ıÀÚ, ÇÑ±Û
+							 Character.isLetterOrDigit(arrChar[i])  //ì˜ë¬¸ì,ìˆ«ì, í•œê¸€
 							 )
 						{						
 							break;
@@ -143,10 +143,10 @@ public class COBLocParser extends BaseParser {
 					line = String.valueOf(arrChar);
 				}
 				
-				if((line == null)||(line.trim().length() < 7)){ //°ø¹é Ã³¸®
+				if((line == null)||(line.trim().length() < 7)){ //ê³µë°± ì²˜ë¦¬
 					continue;
 				}
-				else if (line.charAt(6) != ' '){ //ÇÑÁÙ(7ÄÃ·³ÁÖ¼®) ÁÖ¼® Ã³¸®
+				else if (line.charAt(6) != ' '){ //í•œì¤„(7ì»¬ëŸ¼ì£¼ì„) ì£¼ì„ ì²˜ë¦¬
 					continue;
 				}
 				
@@ -168,11 +168,11 @@ public class COBLocParser extends BaseParser {
 			}
 								
 			if (linetrim.endsWith(".")) {
-				tmpsb.append(linetrim+"\n"); // ¹®
+				tmpsb.append(linetrim+"\n"); // ë¬¸
 				bEndDot = true;
 			}
 			else if ("TANDEM-COBOL".equals(langID) && linetrim.startsWith("?")){
-				tmpsb.append(linetrim+"\n"); // ¹®
+				tmpsb.append(linetrim+"\n"); // ë¬¸
 				bEndDot = true;
 			}
 			else if((cobComd.contains(token)) || (token.startsWith("END-"))) {
@@ -181,7 +181,7 @@ public class COBLocParser extends BaseParser {
 				bEndDot = false;
 			}
 			else{
-				if (bEndDot) tmpsb.append(linetrim); //Å°¿öµå µî·ÏÀÌ ¾ÈµÈ°æ¿ì ¶§¹® 
+				if (bEndDot) tmpsb.append(linetrim); //í‚¤ì›Œë“œ ë“±ë¡ì´ ì•ˆëœê²½ìš° ë•Œë¬¸ 
 				else         tmpsb.append(" "+linetrim);
 				bEndDot = false;
 			}					
@@ -239,3 +239,5 @@ public class COBLocParser extends BaseParser {
 	}	
 	
 }
+
+End
