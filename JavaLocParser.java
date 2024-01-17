@@ -8,17 +8,17 @@ import com.cubegen.common.StringUtils;
 
 /**
  * ClassName     : JavaLocParser
- * @Description  : Line Of Count ÀÚ¹Ù  ÆÄ¼­
+ * @Description  : Line Of Count ìë°”  íŒŒì„œ
  */
 public class JavaLocParser extends BaseParser {		
-	int bracket = 0;		//°ıÈ£ °¹¼ö ( ¿­¸é + ´İÀ¸¸é -)
+	int bracket = 0;		//ê´„í˜¸ ê°¯ìˆ˜ ( ì—´ë©´ + ë‹«ìœ¼ë©´ -)
 	char tab = '\t'; 	//Tab String 
-	String intab = "";	//¼Ò½º¿¡ ÀÔ·ÂµÉ TabString
+	String intab = "";	//ì†ŒìŠ¤ì— ì…ë ¥ë  TabString
 	/**
 	 * MethodName   : LOCParser
-	 * @Description : ¼Ò½º¸¦ ºñ±³ÇÒ ¼ö ÀÖµµ·Ï º¯È¯.
-	 * @param       : StringBuffer source(º¯È¯ÇÒ ¼Ò½º)
-	 * @return      : StringBuffer source(º¯È¯µÈ ¼Ò½º)
+	 * @Description : ì†ŒìŠ¤ë¥¼ ë¹„êµí•  ìˆ˜ ìˆë„ë¡ ë³€í™˜.
+	 * @param       : StringBuffer source(ë³€í™˜í•  ì†ŒìŠ¤)
+	 * @return      : StringBuffer source(ë³€í™˜ëœ ì†ŒìŠ¤)
 	 */
 	public StringBuffer LOCParser(StringBuffer source) {
 		StringBuffer tmpsb = new StringBuffer();
@@ -103,9 +103,9 @@ public class JavaLocParser extends BaseParser {
 	
 	/**
 	 * MethodName   : CommentReplace
-	 * @Description : ¼Ò½ºÀÇ ÁÖ¼® ¹× ¶óÀÎ ±¸ºĞÀÚ¸¦ Á¦°ÅÇÑ´Ù.
-	 * @param       : StringBuffer source(º¯È¯ÇÒ ¼Ò½º)
-	 * @return      : StringBuffer source(º¯È¯µÈ ¼Ò½º)	  
+	 * @Description : ì†ŒìŠ¤ì˜ ì£¼ì„ ë° ë¼ì¸ êµ¬ë¶„ìë¥¼ ì œê±°í•œë‹¤.
+	 * @param       : StringBuffer source(ë³€í™˜í•  ì†ŒìŠ¤)
+	 * @return      : StringBuffer source(ë³€í™˜ëœ ì†ŒìŠ¤)	  
 	 */
 	protected StringBuffer MultiLineCommentReplace(StringBuffer source) {				
 		
@@ -157,10 +157,10 @@ public class JavaLocParser extends BaseParser {
 
 	/**
 	 * Method       : SpaceReplace
-	 * @Description : ¿ÀÆÛ·¹ÀÌ¼Ç ÁÖÀ§ÀÇ ÇÑÄ­ °ø¹éÀ» Á¦°ÅÇÑ´Ù. 
-	 * 							  <br> ¹®ÀÚ¿­ ¾È¿¡¼­´Â Á¦¿ÜÇÑ´Ù.
-	 * @param       : StringBuffer source(º¯È¯ÇÒ ¼Ò½º)
-	 * @return      : StringBuffer source(º¯È¯µÈ ¼Ò½º)
+	 * @Description : ì˜¤í¼ë ˆì´ì…˜ ì£¼ìœ„ì˜ í•œì¹¸ ê³µë°±ì„ ì œê±°í•œë‹¤. 
+	 * 							  <br> ë¬¸ìì—´ ì•ˆì—ì„œëŠ” ì œì™¸í•œë‹¤.
+	 * @param       : StringBuffer source(ë³€í™˜í•  ì†ŒìŠ¤)
+	 * @return      : StringBuffer source(ë³€í™˜ëœ ì†ŒìŠ¤)
 	 */
 	protected StringBuffer SpaceReplace(StringBuffer source) {
 		//String regex = "(\\s)*(\\(|\\)|\\||\\&|\\;|\\,|\\<|\\>|\\!|\\=|\\+|\\-)(\\s)*|(\\\"){1}(?:.)*?(\\\")";
@@ -179,20 +179,20 @@ public class JavaLocParser extends BaseParser {
 	  			j++;
 	  		}
     	}
-	  	//µ¥ÀÌÅÍ Ã¼Å©.
+	  	//ë°ì´í„° ì²´í¬.
 	  	//System.out.println(matcher.toString());
     }    
     return source;
 	}
 	/**
 	 * MethodName   : MultiSpaceReplace
-	 * @Description : ÇÑÄ­ ÀÌ»óÀÇ °ø¹éÀÌ³ª ÅÇÀ»  ÇÑÄ­À¸·Î º¯È¯ÇÑ´Ù.
-	 * @param       : StringBuffer source(º¯È¯ÇÒ ¼Ò½º)
-	 * @return      : StringBuffer source(º¯È¯µÈ ¼Ò½º)
+	 * @Description : í•œì¹¸ ì´ìƒì˜ ê³µë°±ì´ë‚˜ íƒ­ì„  í•œì¹¸ìœ¼ë¡œ ë³€í™˜í•œë‹¤.
+	 * @param       : StringBuffer source(ë³€í™˜í•  ì†ŒìŠ¤)
+	 * @return      : StringBuffer source(ë³€í™˜ëœ ì†ŒìŠ¤)
 	 */
 	protected StringBuffer MultiSpaceReplace(StringBuffer source) {
 		/*
-		//Á¤±Ô½Ä \s ´Â whiteSpace (°ø¹é, ÅÇ, ¶óÀÎ(?)Æ÷ÇÔ)
+		//ì •ê·œì‹ \s ëŠ” whiteSpace (ê³µë°±, íƒ­, ë¼ì¸(?)í¬í•¨)
 		String regex = "(\\s(\\s+))|(\\\"){1}(?:.)*?(\\\")";
 		Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(source.toString());    
@@ -217,9 +217,9 @@ public class JavaLocParser extends BaseParser {
 	
 	/**
 	 * MethodName   : AddSourceLineFlag
-	 * @Description : ¼Ò½º¿¡ ¶óÀÎ ±¸ºĞÀÚ¸¦ Ãß°¡ ÇÑ´Ù.
-	 * @param       : StringBuffer source(º¯È¯ÇÒ ¼Ò½º)
-	 * @return      : StringBuffer source(º¯È¯µÈ ¼Ò½º)
+	 * @Description : ì†ŒìŠ¤ì— ë¼ì¸ êµ¬ë¶„ìë¥¼ ì¶”ê°€ í•œë‹¤.
+	 * @param       : StringBuffer source(ë³€í™˜í•  ì†ŒìŠ¤)
+	 * @return      : StringBuffer source(ë³€í™˜ëœ ì†ŒìŠ¤)
 	 */
 	protected StringBuffer AddSourceLineFlag(StringBuffer source) {
 		//String regex = "(\\;)|(\\{)|(\\})|(\\\"){1}(?:.)*?(\\\")";
@@ -247,7 +247,7 @@ public class JavaLocParser extends BaseParser {
 	  			j++;
 	  		}
     	}
-	  	//µ¥ÀÌÅÍ Ã¼Å©.
+	  	//ë°ì´í„° ì²´í¬.
 	  	//System.out.println(matcher.toString());
     }
 		/*
@@ -261,9 +261,9 @@ public class JavaLocParser extends BaseParser {
 	}
 	/**
 	 * MethodName   : BracketCheck
-	 * @Description : ¼Ò½º ¶óÀÎ ¾ÈÀÇ °ıÈ£ ¼ö¸¦ Ã¼Å© ÇÑ´Ù. 
-	 * @param       : String Line(¼Ò½º ¶óÀÎ)
-	 * @return      : int(¼Ò°ıÈ£ ¼ö)
+	 * @Description : ì†ŒìŠ¤ ë¼ì¸ ì•ˆì˜ ê´„í˜¸ ìˆ˜ë¥¼ ì²´í¬ í•œë‹¤. 
+	 * @param       : String Line(ì†ŒìŠ¤ ë¼ì¸)
+	 * @return      : int(ì†Œê´„í˜¸ ìˆ˜)
 	 */
 	protected int BracketCheckLineNo(String Line) {
 		//String regex = "(\\()|(\\))|(\\\"){1}(?:.)*?(\\\")";
@@ -305,4 +305,6 @@ public class JavaLocParser extends BaseParser {
 		line = tmp.toString();
 		return line;
 	}
+
+	end
 }
