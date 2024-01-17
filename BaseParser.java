@@ -3,20 +3,21 @@ package com.cubegen.fp.loc.Parser;
 public abstract class BaseParser {
 	String langID="";
 	
-	/* Loc Parser ½ÃÀÛ ÇÔ¼ö*/
+	/* Loc Parser ì‹œì‘ í•¨ìˆ˜*/
 	public abstract StringBuffer LOCParser(StringBuffer source);	
-	/* ¸ÖÆ¼¶óÀÎ ÁÖ¼® Á¦°Å */
+	/* ë©€í‹°ë¼ì¸ ì£¼ì„ ì œê±° */
 	protected abstract StringBuffer MultiLineCommentReplace(StringBuffer source);
-	/* ½Ì±Û ¶óÀÎ ÁÖ¼® Á¦°Å */
+	/* ì‹±ê¸€ ë¼ì¸ ì£¼ì„ ì œê±° */
 	protected abstract  StringBuffer SingleLineCommentReplace(StringBuffer source);
-	/* ÇÊ¿ä ¾ø´Â ÇÑÄ­ °ø¹é Á¦°Å */
+	/* í•„ìš” ì—†ëŠ” í•œì¹¸ ê³µë°± ì œê±° */
 	protected abstract StringBuffer SpaceReplace(StringBuffer source);		
-	/* ÇÑÄ­ ÀÌ»ó °ø¹é ÇÑÄ­À¸·Î º¯°æ */
+	/* í•œì¹¸ ì´ìƒ ê³µë°± í•œì¹¸ìœ¼ë¡œ ë³€ê²½ */
 	protected abstract StringBuffer MultiSpaceReplace(StringBuffer source);
-	/* Æ¯Á¤ ±âÈ£ ±âÁØÀ¸·Î ¶óÀÎ ±¸ºĞÀÚ¸¦ Ãß°¡ÇÑ´Ù. */
+	/* íŠ¹ì • ê¸°í˜¸ ê¸°ì¤€ìœ¼ë¡œ ë¼ì¸ êµ¬ë¶„ìë¥¼ ì¶”ê°€í•œë‹¤. */
 	protected abstract StringBuffer AddSourceLineFlag(StringBuffer source);
 	
 	protected abstract int BracketCheckLineNo(String Line);
 	
 	protected abstract String BracketCheckLineStr(String line);
 }
+end
