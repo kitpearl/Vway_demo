@@ -1,8 +1,8 @@
 package com.cubegen.fp.loc.Parser;
 /**
  * GeneralParser
- * @Description  : 	LOC ¼Ò½º Á¤¸® ´ë»ó(JAVA, PROC, TAL, COBOL) ÀÌ ¾Æ´Ñ ÀÚ¿øµéÀº 
- * 									°ø¹é ¶óÀÎ, ÇÑÄ­ÀÌ»ó °ø¹é¸¸ Á¤¸®ÇÑ´Ù. 
+ * @Description  : 	LOC ì†ŒìŠ¤ ì •ë¦¬ ëŒ€ìƒ(JAVA, PROC, TAL, COBOL) ì´ ì•„ë‹Œ ìì›ë“¤ì€ 
+ * 									ê³µë°± ë¼ì¸, í•œì¹¸ì´ìƒ ê³µë°±ë§Œ ì •ë¦¬í•œë‹¤. 
  */
 public class GeneralParser extends BaseParser {
 	
@@ -12,17 +12,17 @@ public class GeneralParser extends BaseParser {
 		return source;
 	}
 	
-	/* ¸ÖÆ¼ ¶óÀÎ ÁÖ¼® Á¦°Å */
+	/* ë©€í‹° ë¼ì¸ ì£¼ì„ ì œê±° */
 	protected StringBuffer MultiLineCommentReplace(StringBuffer source){
 		return source;
 	}
 	
-	/* ½Ì±Û ¶óÀÎ ÁÖ¼® Á¦°Å */
+	/* ì‹±ê¸€ ë¼ì¸ ì£¼ì„ ì œê±° */
 	protected StringBuffer SingleLineCommentReplace(StringBuffer source){
 		return source;
 	}
 	
-	/* ÇÊ¿ä ¾ø´Â ÇÑÄ­ °ø¹é Á¦°Å */
+	/* í•„ìš” ì—†ëŠ” í•œì¹¸ ê³µë°± ì œê±° */
 	protected StringBuffer SpaceReplace(StringBuffer source){
 		return source;
 	}
@@ -35,17 +35,17 @@ public class GeneralParser extends BaseParser {
 	}
 	
 	/**  
-	 * ÇÑÄ­ ÀÌ»ó °ø¹éÀÌ³ª ÅÇÀ» ÇÑÄ­À¸·Î º¯°æ
+	 * í•œì¹¸ ì´ìƒ ê³µë°±ì´ë‚˜ íƒ­ì„ í•œì¹¸ìœ¼ë¡œ ë³€ê²½
 	 */
 	protected StringBuffer MultiSpaceReplace(StringBuffer source){
 		StringBuffer tmp = new StringBuffer();
-		//°ø¹é ' 'ÀÌ°Å³ª  \t ÅÇÀÌ ÇÏ³ª ÀÌ»óÀÎ °æ¿ì ÇÑÄ­À¸·Î º¯È¯ÇÑ´Ù.
+		//ê³µë°± ' 'ì´ê±°ë‚˜  \t íƒ­ì´ í•˜ë‚˜ ì´ìƒì¸ ê²½ìš° í•œì¹¸ìœ¼ë¡œ ë³€í™˜í•œë‹¤.
 		tmp.append(source.toString().replaceAll("( |\\t)( |\\t)+|(\\t)+", " "));
 		source = tmp;
 		return source;
 	}
 	
-	/* Æ¯Á¤ ±âÈ£ ±âÁØÀ¸·Î ¶óÀÎ ±¸ºĞÀÚ¸¦ Ãß°¡ÇÑ´Ù. */
+	/* íŠ¹ì • ê¸°í˜¸ ê¸°ì¤€ìœ¼ë¡œ ë¼ì¸ êµ¬ë¶„ìë¥¼ ì¶”ê°€í•œë‹¤. */
 	protected StringBuffer AddSourceLineFlag(StringBuffer source){
 		return source;
 	}
@@ -58,3 +58,5 @@ public class GeneralParser extends BaseParser {
 		return "";
 	}
 }
+
+end
