@@ -1,4 +1,4 @@
-	package com.cubegen.fp.loc;
+dd coding	package com.cubegen.fp.loc;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -64,10 +64,10 @@ public class LOCParserManager {
 		String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath(); 
 		String decodedPath = URLDecoder.decode(path, "UTF-8");
 		decodedPath = decodedPath.substring(0, decodedPath.lastIndexOf("/")+1);
-		//logger.info("EXE °æ·Î:"+decodedPath);
+		//logger.info("EXE ê²½ë¡œ:"+decodedPath);
 		Process prc = Runtime.getRuntime().exec(decodedPath+"PblDump.exe -es \""+file+"\" *.*", null,fPath);
 		
-		//InputStream readLine¸¦ ÇÏÁö ¾ÊÀ¸¸é ¹öÆÛ°¡²ËÂ÷ ¹«ÇÑ´ë±â°¡µÊ
+		//InputStream readLineë¥¼ í•˜ì§€ ì•Šìœ¼ë©´ ë²„í¼ê°€ê½‰ì°¨ ë¬´í•œëŒ€ê¸°ê°€ë¨
 		InputStream is = prc.getInputStream();                 
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));                 
 		while (true)                 
@@ -94,10 +94,10 @@ public class LOCParserManager {
 	
 	/**
 	 * 
-	 * @param filePath ÆÄÀÏ ÀüÃ¼ °æ·Î
-	 * @param fileName È®ÀåÀÚÆ÷ÇÔ ÆÄÀÏ¸í
-	 * @param cVerID ÇöÀç¹öÀü
-	 * @param LangID ¼Ò½ºÄÚµå ¾ğ¾î
+	 * @param filePath íŒŒì¼ ì „ì²´ ê²½ë¡œ
+	 * @param fileName í™•ì¥ìí¬í•¨ íŒŒì¼ëª…
+	 * @param cVerID í˜„ì¬ë²„ì „
+	 * @param LangID ì†ŒìŠ¤ì½”ë“œ ì–¸ì–´
 	 * @return
 	 */
   public LocResult Run(String filePath, String fileName, String cVerID, String LangID, String ResrcID, 
@@ -117,20 +117,20 @@ public class LOCParserManager {
   		
   	
   	if (FTP == null){
-  		logger.info("FTP »ı¼º");
+  		logger.info("FTP ìƒì„±");
   		FTP = new FTPControl(prop.getProperty("cf.server"), 21, prop.getProperty("cf.user"), prop.getProperty("cf.password"));
   		FTP.login();
   	}
   	
   	if (bChangeFlowCMS && (!prop.getProperty("wcf.server").equals(FTP.getServer()))){
-  		logger.info("FTPº¯°æ ChangeFlowCMS");
+  		logger.info("FTPë³€ê²½ ChangeFlowCMS");
   		FTP.logout();
   		
   		FTP = new FTPControl(prop.getProperty("wcf.server"), 21, prop.getProperty("wcf.user"), prop.getProperty("wcf.password"));;
   		FTP.login();
   	}
   	else if ((!bChangeFlowCMS) && bChangeFlow && (!prop.getProperty("cf.server").equals(FTP.getServer()))){
-  		logger.info("FTPº¯°æ ChangeFlow");
+  		logger.info("FTPë³€ê²½ ChangeFlow");
   		FTP.logout();
   		
   		FTP = new FTPControl(prop.getProperty("cf.server"), 21, prop.getProperty("cf.user"), prop.getProperty("cf.password"));
@@ -144,7 +144,7 @@ public class LOCParserManager {
   	
   	
   	try {
-  		runSetp = "01.½ÃÀÛ";
+  		runSetp = "01.ì‹œì‘";
 			BaseParser parser = ParserList.get(LangID.toUpperCase());
 			
 			if (parser == null){	
@@ -160,7 +160,7 @@ public class LOCParserManager {
 			
 
 			String OldFilePath = filePath.replaceAll("(?i)\\\\Resource\\\\", "\\\\ResourceLOC\\\\");
-			String OldFile=ResrcID+'_'+fileName; //ÆÄÀÏ¸í¿¡ ´ë¼Ò¹®ÀÚ°¡ ±¸ºĞµÇ¾î Çü»ó°ü¸® 1°³ÀÌ»óÀÇ ÀÚ¿øÀÌ µî·ÏµÇ¾î ÀÖÀ½
+			String OldFile=ResrcID+'_'+fileName; //íŒŒì¼ëª…ì— ëŒ€ì†Œë¬¸ìê°€ êµ¬ë¶„ë˜ì–´ í˜•ìƒê´€ë¦¬ 1ê°œì´ìƒì˜ ìì›ì´ ë“±ë¡ë˜ì–´ ìˆìŒ
 			
 			boolean bPbl = fileName.toLowerCase().endsWith(".pbl");
 			boolean bCMS = filePath.toLowerCase().contains("\\cms\\");
@@ -192,7 +192,7 @@ public class LOCParserManager {
 								StringBuffer oldBuffer = parser.LOCParser(tempBuff);
 								FileUtils.FileWriter(OldFilePath,OldFile, oldBuffer.toString());
               } catch (Exception e) {
-              	throw new RuntimeException("OLD SRC LOCParser ¿À·ù", e);
+              	throw new RuntimeException("OLD SRC LOCParser ì˜¤ë¥˜", e);
               }
 						}
 						
@@ -201,7 +201,7 @@ public class LOCParserManager {
 						try{
 							revisedFile = parser.LOCParser(tempBuff);
 						} catch (Exception e) {
-							throw new RuntimeException("New SRC LOCParser ¿À·ù", e);
+							throw new RuntimeException("New SRC LOCParser ì˜¤ë¥˜", e);
 	          }
 					}
 					else {
@@ -250,7 +250,7 @@ public class LOCParserManager {
 										StringBuffer oldBuffer = parser.LOCParser(tempBuff);
 										FileUtils.FileWriter(OldFilePath,OldFile, oldBuffer.toString());
 									} catch (Exception e) {
-										throw new RuntimeException("OLD SRC LOCParser ¿À·ù", e);
+										throw new RuntimeException("OLD SRC LOCParser ì˜¤ë¥˜", e);
 		              }
 									
 								}
@@ -274,12 +274,12 @@ public class LOCParserManager {
 								try{
 									revisedFile = parser.LOCParser(tempBuff);
 								} catch (Exception e) {
-									throw new RuntimeException("New SRC LOCParser ¿À·ù", e);
+									throw new RuntimeException("New SRC LOCParser ì˜¤ë¥˜", e);
 	              }
 							}
 			      } catch (Exception e) {
 			      	logger.error(e.getMessage(), e);
-			      	result.setError(e.getMessage()+"\n ChangeFlow ÆÄÀÏ ´Ù¿î·Îµå ¿À·ù\n"+filePath+fileName);
+			      	result.setError(e.getMessage()+"\n ChangeFlow íŒŒì¼ ë‹¤ìš´ë¡œë“œ ì˜¤ë¥˜\n"+filePath+fileName);
 			      	return result;
 			      }
 					}
@@ -297,7 +297,7 @@ public class LOCParserManager {
 					try{
 						revisedFile = parser.LOCParser(SrcFile);
 					} catch (Exception e) {
-	        	result.setError(e.getMessage()+"\n LOC Parsing ¿À·ù\n"+filePath+fileName);
+	        	result.setError(e.getMessage()+"\n LOC Parsing ì˜¤ë¥˜\n"+filePath+fileName);
 	        	return result;
 	        }
 				}
@@ -306,7 +306,7 @@ public class LOCParserManager {
 				}
 			}
 			
-			runSetp = "04.Line Source »ı¼º";
+			runSetp = "04.Line Source ìƒì„±";
 			//FileUtils.FileWriter(filePath,fileName+"1", revisedFile.toString());
 			
 			//revised =FileUtils.fileToLines(filePath+fileName+"1");
@@ -325,7 +325,7 @@ public class LOCParserManager {
 			
 			if (!IsBaseLine){
 				runSetp = "05.OLD File Load";
-				originalFile = FileUtils.FileReader(OldFilePath+OldFile); //ÀÓ½Ã¿ë
+				originalFile = FileUtils.FileReader(OldFilePath+OldFile); //ì„ì‹œìš©
 				original = FileUtils.fileToLines(OldFilePath+OldFile);
 			}
 			
@@ -397,7 +397,7 @@ public class LOCParserManager {
 			runSetp = "08. OLD File Write";
 			FileUtils.FileWriter(OldFilePath,OldFile, revisedFile.toString());
 			
-			runSetp = "100.LOC¿Ï·á";
+			runSetp = "100.LOCì™„ë£Œ";
 			
     } catch (Exception e) {
     	result.setError(e.getMessage()+"\n"+runSetp);
