@@ -21,3 +21,4 @@ public abstract class BaseParser {
 	protected abstract String BracketCheckLineStr(String line);
 }
 end
+//end
